@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<input id="task" value="Type here">
+<button id="add" onclick="add1(); show();">Add</button>
+<p id="todos"></p>
+<p id="todos1"></p>
+<hr>
+<script>
+    var x;
+    var y;
+    var arr= [];
+	var obj={to_do:"",Sno:"",Eno:"",Bno:"",Dno:""};
+	var u=0;
+	var counter=0;
+	function add1()
+	{
+		counter++;
+		obj.to_do=document.getElementById("task").value;
+		obj.Sno=counter;
+		obj.Eno=counter+100;		
+		obj.Bno=counter+200;
+		obj.Dno=counter+300;
+		arr.push(obj);
+
+	}
+
+	function show()
+	{
+                          x = document.createElement("TEXTAREA");
+                	        y = document.createTextNode(arr[u].Sno+"."+arr[u].to_do);
+                          x.appendChild(y);
+                	        document.body.appendChild(x);
+                	        buttons();
+                	        x.setAttribute("id",arr[u].Sno);
+                	        x.setAttribute("disabled",true);
+                          function diable(b)                      
+                	            {
+                	            	document.getElementById(b-200).setAttribute("disabled",true);
+                	            }
+
+
+                	    function buttons()
+	                   {
+		                  var btn = document.createElement("BUTTON");
+                          document.body.appendChild(btn);
+                          var t = document.createTextNode("EDIT");
+                          btn.appendChild(t);
+                          btn.setAttribute("id",arr[u].Eno);
+                          btn.addEventListener('click', function(){ edit(this);}, false);
+
+                          function life()
+                          {
+                          	btn.removeAttribute("disabled");
+                          }
+
+
+                	            function edit(buttoncontrol)
+                	            {
+                	            	var l=buttoncontrol.id-100;
+                	            	var z=buttoncontrol.id-(-100);
+                	            	document.getElementById(l).removeAttribute("disabled");
+                	            	document.getElementById(buttoncontrol.id).setAttribute("disabled", true);
+                	            	document.getElementById(z).removeAttribute("disabled");
+                	            }	
+
+
+
+		                       var btn1 = document.createElement("BUTTON");
+                               document.body.appendChild(btn1);
+                               var t1 = document.createTextNode("SAVE");
+                               btn1.appendChild(t1);
+                               btn1.setAttribute("id",arr[u].Bno);
+                               btn1.addEventListener('click', function(){ save(this);}, false);
+                               btn1.setAttribute("disabled",true);
+
+
+                          function save(buttoncontrol)                         
+                          {
+                          	        sweet();
+                          	        diable(buttoncontrol.id);
+                          	        life();
+                          	        arrsave();
+                          	         function diablejumbo()
+                          	         {
+                          	         	document.getElementById(buttoncontrol.id-200).setAttribute("disabled",true);
+                          	            }
+                          	            diablejumbo();
+
+                                     function sweet()
+                                     {
+                                        document.getElementById(buttoncontrol.id).setAttribute("disabled",           true);
+                                     }
+                                          sweet();
+
+                                        function arrsave()
+                                       {
+                                         arr[buttoncontrol.id-199].to_do=document.getElementById(buttoncontrol.id-200).value;
+                                        }
+
+
+                          }
+
+
+                          	   var btn2= document.createElement("BUTTON");
+                               document.body.appendChild(btn2);
+                               var t2 = document.createTextNode("DELETE");
+                               btn2.appendChild(t2);
+                               btn2.setAttribute("id",arr[u].Dno);
+                               btn2.addEventListener('click', function(){ delete1(this);}, false);
+
+                               function delete1(buttoncontrol)
+                               {
+                               	  var l=buttoncontrol.id-300;
+                               	  var g=buttoncontrol.id-200;
+                               	  document.getElementById(l).value="DELETED";
+                               }
+                               
+             
+	                   } 
+	                   u++;
+	                                
+	}	
+</script>
+</body>
+</html>
